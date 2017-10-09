@@ -19,9 +19,17 @@ class SessionsController < ApplicationController
     user = User.where(token: params[:token]).where('token_expires_at > ?', Time.now.utc).first
 
     if user
+      login_user(user)
       redirect_to root_path, notice: 'Successfully logged in.'
     else
       redirect_to login_path, notice: 'Sorry, that token is invalid.'
     end
+  end
+
+  private
+
+  def login_user(user)
+    user.expire_token!
+    session[:email] = user.email
   end
 end

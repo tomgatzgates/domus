@@ -22,4 +22,14 @@ RSpec.describe User, type: :model do
         .and change { user.token }.from(nil)
     end
   end
+
+  describe '#expire_token!' do
+    let(:user) { User.new(email: 'tom@gates.com', token: 'foo', token_expires_at: Time.now) }
+
+    it 'resets the token and token_expires_at to nil' do
+      expect { user.expire_token! }
+        .to change { user.token }.to(nil)
+        .and change { user.token_expires_at }.to(nil)
+    end
+  end
 end
