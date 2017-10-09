@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :authorise, except: [:new, :create]
+
   def show
     @user = current_user
   end
