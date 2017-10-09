@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
 
     if user
       UserMailer.login_link(user).deliver_later
-      flash.notice = 'We have sent you the link to login to our app'
+      flash.notice = 'We have sent you the link to login to our app.'
     else
       flash.notice = 'Sorry, we do not recognise that email address.'
     end
@@ -17,5 +17,11 @@ class SessionsController < ApplicationController
 
   def auth
     user = User.where(token: params[:token]).where('token_expires_at > ?', Time.now.utc).first
+
+    if user
+      redirect_to root_path, notice: 'Successfully logged in.'
+    else
+      redirect_to login_path, notice: 'Sorry, that token is invalid.'
+    end
   end
 end

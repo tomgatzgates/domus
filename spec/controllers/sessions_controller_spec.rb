@@ -33,4 +33,29 @@ RSpec.describe SessionsController, type: :controller do
       end
     end
   end
+
+  describe 'GET #auth' do
+    context 'with valid token' do
+      let(:user) { User.new(email: 'tom@domus.com') }
+      let(:token) { user.generate_token }
+
+      it 'redirects to home with flash message' do
+        get :auth, params: { token: token }
+
+        expect(response).to redirect_to '/'
+        expect(flash[:notice]).to match(/^Successfully logged in./)
+      end
+    end
+
+    context 'with invalid token' do
+      let(:user) { User.new(email: 'tom@domus.com') }
+
+      it 'redirects to login with flash message' do
+        get :auth, params: { token: 'this-is-a-token' }
+
+        expect(response).to redirect_to '/login'
+        expect(flash[:notice]).to match(/^Sorry, that token is invalid./)
+      end
+    end
+  end
 end
