@@ -16,7 +16,7 @@ RSpec.describe SessionsController, type: :controller do
         post :create, params: { email: email }
       end
 
-      it 'redirects to login with flash message' do
+      it 'redirects to account with flash message' do
         post :create, params: { email: email }
 
         expect(response).to redirect_to '/login'
@@ -29,7 +29,7 @@ RSpec.describe SessionsController, type: :controller do
         post :create, params: { email: 'tom@domus.com' }
 
         expect(response).to redirect_to '/login'
-        expect(flash[:notice]).to match(/^Sorry, we do not recognise that email address./)
+        expect(flash[:alert]).to match(/^Sorry, we do not recognise that email address./)
       end
     end
   end
@@ -42,7 +42,7 @@ RSpec.describe SessionsController, type: :controller do
       it 'redirects to home with flash message' do
         get :auth, params: { token: token }
 
-        expect(response).to redirect_to '/'
+        expect(response).to redirect_to '/account'
         expect(flash[:notice]).to match(/^Successfully logged in./)
         expect(controller.current_user).to eq user
       end
@@ -55,7 +55,7 @@ RSpec.describe SessionsController, type: :controller do
         get :auth, params: { token: 'this-is-a-token' }
 
         expect(response).to redirect_to '/login'
-        expect(flash[:notice]).to match(/^Sorry, that token is invalid./)
+        expect(flash[:alert]).to match(/^Sorry, that token is invalid./)
       end
     end
   end

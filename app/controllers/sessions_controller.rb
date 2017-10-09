@@ -28,9 +28,9 @@ class SessionsController < ApplicationController
 
     if user
       login_user(user)
-      redirect_to root_path, notice: 'Successfully logged in.'
+      redirect_to account_path, notice: 'Successfully logged in.'
     else
-      redirect_to login_path, notice: 'Sorry, that token is invalid.'
+      redirect_to login_path, alert: 'Sorry, that token is invalid.'
     end
   end
 
