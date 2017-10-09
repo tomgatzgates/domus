@@ -1,1 +1,6 @@
 <h1><%= @property.id %></h1>
+<ul>
+  <li>Bedrooms: <%= @property.bedrooms > 0 ? @property.bedrooms : 'Studio' %></li>
+  <li>Bathrooms: <%= @property.bathrooms %></li>
+  <li>Furnished: <%= @property.furnished ? 'Yes' : 'No' %>
+</ul>

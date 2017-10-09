@@ -14,7 +14,7 @@ class PropertiesController < ApplicationController
   end
 
   def create
-    @property = properties.new#(property_params)
+    @property = properties.new(property_params)
 
     if @property.save
       redirect_to property_path(@property), notice: 'Successfully created a listing.'
@@ -26,7 +26,7 @@ class PropertiesController < ApplicationController
   private
 
   def property_params
-    params.require(:property).permit()
+    params.require(:property).permit(:bedrooms, :bathrooms, :furnished)
   end
 
   def properties

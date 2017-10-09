@@ -15,6 +15,21 @@
     </div>
   <% end %>
 
+  <div class="field">
+    <%= f.label :bedrooms %>
+    <%= f.number_field :bedrooms, min: 0 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :bathrooms %>
+    <%= f.number_field :bathrooms, min: 0 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :furnished %>
+    <%= f.check_box :furnished %>
+  </div>
+
   <div class="actions">
     <%= f.submit 'Save property' %>
   </div>
