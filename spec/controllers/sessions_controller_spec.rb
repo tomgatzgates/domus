@@ -59,4 +59,25 @@ RSpec.describe SessionsController, type: :controller do
       end
     end
   end
+
+  describe 'GET #destroy' do
+    context 'with logged in user' do
+      it 'redirects to login with flash message' do
+
+        get :destroy, session: { email: 'an email' }
+
+        expect(response).to redirect_to '/'
+        expect(flash[:notice]).to match(/^Logged out./)
+      end
+    end
+
+    context 'with logged out user' do
+      it 'redirects to login with flash message' do
+        get :destroy, session: { email: nil }
+
+        expect(response).to redirect_to '/'
+        expect(flash[:notice]).to match(/^Already logged out./)
+      end
+    end
+  end
 end

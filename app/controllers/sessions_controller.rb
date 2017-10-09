@@ -15,6 +15,14 @@ class SessionsController < ApplicationController
     redirect_to login_path
   end
 
+  def destroy
+    session.delete(:email).tap do |was_logged_in |
+      flash.notice = was_logged_in ? 'Logged out.' : 'Already logged out.'
+    end
+
+    redirect_to root_path
+  end
+
   def auth
     user = User.where(token: params[:token]).where('token_expires_at > ?', Time.now.utc).first
 
