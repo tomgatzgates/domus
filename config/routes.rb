@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   get 'account', to: 'users#show'
   get 'register', to: 'users#new'
   resources :users, only: [:create]
+
+  resources :properties, only: [:index, :new, :create, :show]
 end

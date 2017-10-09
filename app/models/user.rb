@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   EMAIL_REGEX = /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
 
+  has_many :properties
+
   validates :email, presence: true,
                     uniqueness: { case_senstive: false },
                     format: { with: EMAIL_REGEX }
