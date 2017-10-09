@@ -9,4 +9,10 @@ class User < ApplicationRecord
   def email=(value)
     self[:email] = value.downcase.delete(' ')
   end
+
+  def generate_token
+    token = SecureRandom.urlsafe_base64
+    update(token: token, token_generated_at: Time.now.utc)
+    token
+  end
 end
