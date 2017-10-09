@@ -17,7 +17,7 @@
         <div class="navbar-menu">
           <div class="navbar-end">
             <% if current_user %>
-              <%= link_to 'Log out', logout_path, class: 'nav-item' %>
+              <%= link_to "Log out (#{current_user.email})", logout_path, class: 'nav-item' %>
             <% else %>
               <%= link_to 'Log in', login_path, class: 'nav-item' %>
               <%= link_to 'Sign up', new_user_path, class: 'nav-item button is-primary' %>
