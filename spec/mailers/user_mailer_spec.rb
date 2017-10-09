@@ -9,7 +9,7 @@ RSpec.describe UserMailer, type: :mailer do
     it 'creates a token for the user and sends the email' do
       expect { mail.deliver }
         .to change { user.token }.from(nil)
-        .and change { user.token_generated_at }.from(nil)
+        .and change { user.token_expires_at }.from(nil)
     end
 
     it 'sends token in the email' do

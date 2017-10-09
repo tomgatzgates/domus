@@ -18,7 +18,7 @@ RSpec.describe User, type: :model do
 
     it 'sets the generated time' do
       expect { user.generate_token }
-        .to change { user.token_generated_at }.from(nil)
+        .to change { user.token_expires_at }.from(nil)
         .and change { user.token }.from(nil)
     end
   end

@@ -11,8 +11,10 @@ class User < ApplicationRecord
   end
 
   def generate_token
-    token = SecureRandom.urlsafe_base64
-    update(token: token, token_generated_at: Time.now.utc)
+    update(
+      token: SecureRandom.urlsafe_base64,
+      token_expires_at: Time.now.utc + 30.minutes
+    )
     token
   end
 end
