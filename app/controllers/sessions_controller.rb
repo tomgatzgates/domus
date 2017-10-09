@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       UserMailer.login_link(user).deliver_later
       flash.notice = 'We have sent you the link to login to our app.'
     else
-      flash.notice = 'Sorry, we do not recognise that email address.'
+      flash.alert = 'Sorry, we do not recognise that email address.'
     end
 
     redirect_to login_path
