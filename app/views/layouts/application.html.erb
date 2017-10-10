@@ -17,7 +17,7 @@
             <%= link_to 'Home', root_path, class: 'nav-item' %>
             <% if current_user %>
               <%= link_to 'Account', account_path, class: 'nav-item' %>
-              <%= link_to 'My Properties', properties_path, class: 'nav-item' %>
+              <%= link_to 'My Properties', account_properties_path, class: 'nav-item' %>
               <%= link_to 'Log out', logout_path, class: 'nav-item' %>
             <% else %>
               <%= link_to 'Log in', login_path, class: 'nav-item' %>

@@ -1,0 +1,8 @@
+<h1>Properties</h1>
+<ul>
+  <% @properties.each do |property| %>
+    <li><%= link_to property.name, account_property_path(property) %></li>
+  <% end %>
+</ul>
+
+<%= link_to 'New property', new_account_property_path %>

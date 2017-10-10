@@ -6,9 +6,10 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#destroy'
   resources :sessions, only: [:create]
 
-  get 'account', to: 'users#show'
   get 'register', to: 'users#new'
   resources :users, only: [:create]
-
-  resources :properties, only: [:index, :new, :create, :show]
+  get 'account', to: 'users#show'
+  namespace :account do
+    resources :properties, only: [:index, :new, :create, :show]
+  end
 end
