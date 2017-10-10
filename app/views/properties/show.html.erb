@@ -4,3 +4,11 @@
   <li>Bathrooms: <%= @property.bathrooms %></li>
   <li>Furnished: <%= @property.furnished ? 'Yes' : 'No' %>
 </ul>
+
+<address>
+  <%= @address.line_1 %><br/>
+  <% if @address.line_2.present? %><%= @address.line_2 %><br/><% end %>
+  <%= @address.city %><br/>
+  <%= @address.province %><br/>
+  <%= @address.zip %>
+</address>

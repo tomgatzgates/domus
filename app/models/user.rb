@@ -1,7 +1,6 @@
 class User < ApplicationRecord
-  EMAIL_REGEX = /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
-
   has_many :properties
+  has_many :addresses, as: :addressable
 
   validates :email, presence: true,
                     uniqueness: { case_senstive: false },

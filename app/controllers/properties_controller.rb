@@ -7,10 +7,11 @@ class PropertiesController < ApplicationController
 
   def show
     @property = properties.find(params[:id])
+    @address = @property.address
   end
 
   def new
-    @property = properties.new
+    @property = properties.new(address: Address.new)
   end
 
   def create
@@ -26,10 +27,10 @@ class PropertiesController < ApplicationController
   private
 
   def property_params
-    params.require(:property).permit(:bedrooms, :bathrooms, :furnished)
+    params.require(:property).permit(:bedrooms, :bathrooms, :furnished, address_attributes: [:line_1, :line_2, :city, :province, :zip])
   end
 
   def properties
-    current_user.properties
+    current_user.properties.includes(:address)
   end
 end
